@@ -1,58 +1,40 @@
-import React from "react";
+const TodoListItem = ({label, onDeleted, onToggleImportant, onToggleDone, done, important }) => {
+    let classNames = 'item-list-base label-text';
 
-class TodoListItem extends React.Component {
-    state = {
-        done: false,
-        important: false 
+    if (done) {
+        classNames += 'done';
     }
 
-    onLabelClick = () => {
-        console.log(`Нажато: ${this.props.label}`)
-        //запомнить метод setState! он переключается true/false
-        this.setState(
-            ({done}) => {
-                return {
-                    done: !done
-                }
-            }
-        );
+    if(important) {
+        classNames += ' important';
     }
 
-        onMarkImportant = () => {
-            this.setState(
-        
-        ({important}) => {
-            return {
-                important: !important
-            }
-        }
-        );
-    }
-
-    render () {
-        
-        const {label} = this.props;
-        const {done, important} = this.state
-        let labelClass = 'item-list-base';
-        if(done) { // если done истинный и равен true
-            labelClass = labelClass + ' done';
-        }
-        if(important) {
-            labelClass = labelClass + ' important';   
-        }
-
-        return(
-            <div>
-                <span className={labelClass} onClick={this.onLabelClick}>{label}</span>
-                <button onClick={this.onMarkImportant} type="button" className="btn btn-outline-success">
+    return(
+        <div className="row">
+            <div className="col-6">
+                <span onClick={onToggleDone} className={classNames}>
+                    {label}
+                </span>
+            </div>
+            <div className="col-6 buttons">
+                {done ? (
+                    <button type="button" onClick={onToggleDone} className="btn btn-outline-warning my-button mх-1">
+                        <i className="fa-solid fa-arrow-left"></i>
+                    </button>
+                ) : (
+                    <button tepe ="button" onClick={onToggleDone} className="btn btn-outline-success my-button mх-1">
+                        <i className="fa-solid fa-check"></i>
+                    </button>
+                )}
+                <button tepe ="button" onClick={onToggleImportant} className="btn btn-outline-primary my-button mх-1">
                     <i className="fa-solid fa-exclamation"></i>
                 </button>
-                <button type="button" className="btn btn-outline-danger" onClick={this.props.onDeleted}>
-                    <i className="fa-solid fa-trash-can"></i>
+                <button tepe ="button" onClick={onDeleted} className="btn btn-outline-danger my-button mх-1">
+                    <i className="fa-solid fa-trash"></i>
                 </button>
             </div>
-        )
-    }
+        </div>
+    )   
 }
 
 export default TodoListItem;
