@@ -10,7 +10,7 @@ const handleAdd = () => {
     return(
         <div className="item-add-form">
             <div className="row">
-                <div className="col-4">
+                <div className="col-7">
                     <input
                     value={value}
                     onChange={(e) => setValue(e.target.value)}
@@ -18,9 +18,9 @@ const handleAdd = () => {
                      placeholder="Сюда писать дела"/>
                 </div>
                 
-                <div className="col-2">
+                <div className="col-5">
                     <button
-                     className="btn btn-outline-info" 
+                     className="btn btn-outline-info w-100" 
                     onClick={handleAdd}>
                         Добавить
                     </button>
